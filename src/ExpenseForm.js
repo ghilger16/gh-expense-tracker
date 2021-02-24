@@ -10,18 +10,13 @@ const ExpenseForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setExpense([
-      ...expense,
-      {
-        id: expense.length,
-        date,
-        amount,
-        description,
-        purchasedFrom,
-      },
-    ]);
+    let newExpense = { date, amount, description, purchasedFrom };
+    let arr = expense.concat(newExpense);
+    setExpense(arr);
     console.log(expense);
+    console.log(date);
   };
+
   return (
     <div class="card-body w-50 mx-auto">
       <form>
