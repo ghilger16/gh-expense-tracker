@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ExpenseForm from "./ExpenseForm";
 import TabNav from "./TabNav";
 import Tab from "./Tab";
-import IncomeForm from "./IncomeForm";
+
 import TransactionsTable from "./TransactionsTable";
 
 function App() {
   const [selected, setSelected] = useState("Expense");
+  const [expense, setExpense] = useState(() => {
+    const localData = localStorage.getItem("expense");
+    return localData ? JSON.parse(localData) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("expense", JSON.stringify(expense));
+  }, [expense]);
 
   return (
     <div>
@@ -15,18 +23,16 @@ function App() {
       <h2>Balance:</h2>
 
       <TabNav
-        tabs={["Expense", "Income", "Transactions"]}
+        tabs={["Expense", "Transactions"]}
         selected={selected}
         setSelected={setSelected}
       >
         <Tab isSelected={selected === "Expense"}>
-          <ExpenseForm />
+          <ExpenseForm expense={expense} setExpense={setExpense} />
         </Tab>
-        <Tab isSelected={selected === "Income"}>
-          <IncomeForm />
-        </Tab>
+
         <Tab isSelected={selected === "Transactions"}>
-          <TransactionsTable />
+          <TransactionsTable expense={expense} />
         </Tab>
       </TabNav>
     </div>

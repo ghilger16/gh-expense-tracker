@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ expense, setExpense }) => {
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [purchasedFrom, setPurchasedFrom] = useState("");
-  const [expense, setExpense] = useState([]);
+
+  console.log(expense);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let newExpense = { date, amount, description, purchasedFrom };
+    let newExpense = {
+      id: expense.length + 1,
+      date,
+      amount,
+      description,
+      purchasedFrom,
+    };
     let arr = expense.concat(newExpense);
     setExpense(arr);
-    console.log(expense);
-    console.log(date);
   };
 
   return (
