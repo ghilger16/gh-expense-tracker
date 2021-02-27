@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 
-const TransactionsTable = ({ expense }) => {
-  const [show, setShow] = useState(false);
+const TransactionsTable = ({ expense, setExpense }) => {
+  const [show, setShow] = useState(null);
+
+  const deleteRow = (id) => {
+    const newList = expense.filter((expense) => expense.id !== id);
+    setExpense(newList);
+  };
+
   const renderTableData = () => {
-    return expense?.map((expense) => {
+    return expense.map((expense) => {
       const { id, date, amount, description, purchasedFrom } = expense;
       return (
-        <tr
-          onMouseOver={(e) => setShow(!show)}
-          onMouseOut={(e) => setShow(!show)}
-          key={id}
-        >
-          <td>
-            {show && (
-              <td>
-                <button>delete</button>
-              </td>
-            )}
+        <tr onMouseOver={(e) => setShow(expense.id)} key={id}>
+          <td onClick={() => deleteRow(expense.id)}>
+            {show === expense.id && <h5>❌</h5>}
           </td>
           <td>{date}</td>
           <td>{description}</td>
@@ -28,9 +26,10 @@ const TransactionsTable = ({ expense }) => {
   };
 
   return (
-    <table class="table table-hover table-sm">
+    <table class="table table-hover table-lg">
       <thead class="thead-light">
         <tr>
+          <th></th>
           <th>Date</th>
           <th>Description</th>
           <th>Purchased From</th>

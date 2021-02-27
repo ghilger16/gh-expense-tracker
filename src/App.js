@@ -32,7 +32,7 @@ function App() {
         </Tab>
 
         <Tab isSelected={selected === "Transactions"}>
-          <TransactionsTable expense={expense} />
+          <TransactionsTable expense={expense} setExpense={setExpense} />
         </Tab>
       </TabNav>
     </div>

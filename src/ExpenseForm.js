@@ -12,7 +12,7 @@ const ExpenseForm = ({ expense, setExpense }) => {
     e.preventDefault();
 
     let newExpense = {
-      id: expense.length + 1,
+      id: expense.length,
       date,
       amount,
       description,
