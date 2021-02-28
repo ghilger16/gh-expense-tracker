@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ExpenseForm from "./ExpenseForm";
 import TabNav from "./TabNav";
 import Tab from "./Tab";
-
 import TransactionsTable from "./TransactionsTable";
 
 function App() {
@@ -12,15 +11,24 @@ function App() {
     const localData = localStorage.getItem("expense");
     return localData ? JSON.parse(localData) : [];
   });
+  const [balance, setBalance] = useState(() => {
+    const localData = localStorage.getItem("balance");
+    return localData ? JSON.parse(localData) : 0;
+  });
 
-  useEffect(() => {
-    localStorage.setItem("expense", JSON.stringify(expense));
-  }, [expense]);
+  useEffect(
+    () => {
+      localStorage.setItem("expense", JSON.stringify(expense));
+      Number(localStorage.setItem("balance", JSON.stringify(balance)));
+    },
+    [expense],
+    [balance]
+  );
 
   return (
-    <div>
-      <h1>Expense Tracker</h1>
-      <h2>Balance:</h2>
+    <div class="d-flex align-items-center flex-column">
+      <h1 class="mb-auto p-2">Expense Tracker</h1>
+      <h2 class="p-2">Balance: {`$${balance}`}</h2>
 
       <TabNav
         tabs={["Expense", "Transactions"]}
@@ -28,11 +36,21 @@ function App() {
         setSelected={setSelected}
       >
         <Tab isSelected={selected === "Expense"}>
-          <ExpenseForm expense={expense} setExpense={setExpense} />
+          <ExpenseForm
+            expense={expense}
+            setExpense={setExpense}
+            balance={balance}
+            setBalance={setBalance}
+          />
         </Tab>
 
         <Tab isSelected={selected === "Transactions"}>
-          <TransactionsTable expense={expense} setExpense={setExpense} />
+          <TransactionsTable
+            expense={expense}
+            setExpense={setExpense}
+            balance={balance}
+            setBalance={setBalance}
+          />
         </Tab>
       </TabNav>
     </div>

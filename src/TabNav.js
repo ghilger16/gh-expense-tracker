@@ -3,7 +3,7 @@ import React from "react";
 const TabNav = (props) => {
   return (
     <div>
-      <div class="card text-center mx-auto w-50">
+      <div class="card text-center mx-auto">
         <div class="card-header">
           <ul className="nav nav-pills card-header-pills mx-auto">
             {props.tabs.map((tab) => {

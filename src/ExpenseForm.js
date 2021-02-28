@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 
-const ExpenseForm = ({ expense, setExpense }) => {
+const ExpenseForm = ({ expense, setExpense, balance, setBalance }) => {
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [purchasedFrom, setPurchasedFrom] = useState("");
-
-  console.log(expense);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +18,8 @@ const ExpenseForm = ({ expense, setExpense }) => {
     };
     let arr = expense.concat(newExpense);
     setExpense(arr);
+
+    setBalance(balance + amount);
   };
 
   return (
@@ -41,7 +41,7 @@ const ExpenseForm = ({ expense, setExpense }) => {
               type="number"
               class="form-control"
               value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              onChange={(e) => setAmount(Number(e.target.value))}
             />
           </div>
         </div>
