@@ -6,7 +6,7 @@ import Tab from "./Components/Tab";
 import TransactionsTable from "./Components/TransactionsTable";
 import IncomeForm from "./Components/IncomeForm";
 
-function App() {
+const App = () => {
   const [selected, setSelected] = useState("Expense");
   const [expense, setExpense] = useState(() => {
     const localData = localStorage.getItem("expense");
@@ -64,6 +64,6 @@ function App() {
       </TabNav>
     </div>
   );
-}
+};
 
 export default App;
