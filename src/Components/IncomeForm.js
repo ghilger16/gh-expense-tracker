@@ -1,25 +1,31 @@
 import React, { useState } from "react";
 
-const ExpenseForm = ({ expense, setExpense, balance, setBalance }) => {
+const IncomeForm = ({ expense, setExpense, balance, setBalance }) => {
   const [date, setDate] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const [purchasedFrom, setPurchasedFrom] = useState("");
+  const [incomeSource, setIncomeSource] = useState("");
+  const [isIncome, setIsIncome] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let newExpense = {
-      id: expense.length,
-      date,
-      amount,
-      description,
-      purchasedFrom,
-    };
-    let arr = expense.concat(newExpense);
-    setExpense(arr);
+    if (!amount) {
+      alert("Please Complete Form");
+    } else {
+      let newExpense = {
+        id: expense.length,
+        date,
+        amount,
+        description,
+        incomeSource,
+        isIncome,
+      };
+      let arr = expense.concat(newExpense);
+      setExpense(arr);
 
-    setBalance(balance + amount);
+      setBalance(balance + amount);
+    }
   };
 
   return (
@@ -55,21 +61,21 @@ const ExpenseForm = ({ expense, setExpense, balance, setBalance }) => {
           />
         </div>
         <div class="form-group">
-          <label>Purchased From</label>
+          <label>Income Source</label>
           <input
             type="text"
             class="form-control"
-            value={purchasedFrom}
-            onChange={(e) => setPurchasedFrom(e.target.value)}
+            value={incomeSource}
+            onChange={(e) => setIncomeSource(e.target.value)}
           />
         </div>
 
         <button class="btn btn-primary" onClick={handleSubmit}>
-          Add Expense
+          Add Income
         </button>
       </form>
     </div>
   );
 };
 
-export default ExpenseForm;
+export default IncomeForm;

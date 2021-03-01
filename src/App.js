@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ExpenseForm from "./ExpenseForm";
-import TabNav from "./TabNav";
-import Tab from "./Tab";
-import TransactionsTable from "./TransactionsTable";
+import ExpenseForm from "./Components/ExpenseForm";
+import TabNav from "./Components/TabNav";
+import Tab from "./Components/Tab";
+import TransactionsTable from "./Components/TransactionsTable";
+import IncomeForm from "./Components/IncomeForm";
 
 function App() {
   const [selected, setSelected] = useState("Expense");
@@ -31,12 +32,20 @@ function App() {
       <h2 class="p-2">Balance: {`$${balance}`}</h2>
 
       <TabNav
-        tabs={["Expense", "Transactions"]}
+        tabs={["Expense", "Income", "Transactions"]}
         selected={selected}
         setSelected={setSelected}
       >
         <Tab isSelected={selected === "Expense"}>
           <ExpenseForm
+            expense={expense}
+            setExpense={setExpense}
+            balance={balance}
+            setBalance={setBalance}
+          />
+        </Tab>
+        <Tab isSelected={selected === "Income"}>
+          <IncomeForm
             expense={expense}
             setExpense={setExpense}
             balance={balance}
