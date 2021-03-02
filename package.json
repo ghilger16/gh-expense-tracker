@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
+    "bootstrap": "^4.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
@@ -18,8 +19,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"node index\"",
-    "heroku-postbuild": "react-scripts build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
