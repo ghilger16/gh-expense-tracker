@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "0.1.0",
+  "name": "gh-expense-tracker",
+  "version": "0.0.0",
   "private": true,
   "engines": {
     "node": "14.15.4",
@@ -18,9 +18,10 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"node index\"",
+    "heroku-postbuild": "react-scripts build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
