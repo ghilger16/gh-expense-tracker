@@ -8,7 +8,7 @@ import IncomeForm from "./Components/IncomeForm";
 
 const App = () => {
   const [selected, setSelected] = useState("Expense");
-  const [expense, setExpense] = useState(() => {
+  const [expenses, setExpense] = useState(() => {
     const localData = localStorage.getItem("expense");
     return localData ? JSON.parse(localData) : [];
   });
@@ -17,14 +17,10 @@ const App = () => {
     return localData ? JSON.parse(localData) : 0;
   });
 
-  useEffect(
-    () => {
-      localStorage.setItem("expense", JSON.stringify(expense));
-      Number(localStorage.setItem("balance", JSON.stringify(balance)));
-    },
-    [expense],
-    [balance]
-  );
+  useEffect(() => {
+    localStorage.setItem("expense", JSON.stringify(expenses));
+    Number(localStorage.setItem("balance", JSON.stringify(balance)));
+  }, [expenses, balance]);
 
   return (
     <div class="d-flex align-items-center flex-column">
@@ -38,7 +34,7 @@ const App = () => {
       >
         <Tab isSelected={selected === "Expense"}>
           <ExpenseForm
-            expense={expense}
+            expenses={expenses}
             setExpense={setExpense}
             balance={balance}
             setBalance={setBalance}
@@ -46,7 +42,7 @@ const App = () => {
         </Tab>
         <Tab isSelected={selected === "Income"}>
           <IncomeForm
-            expense={expense}
+            expenses={expenses}
             setExpense={setExpense}
             balance={balance}
             setBalance={setBalance}
@@ -55,7 +51,7 @@ const App = () => {
 
         <Tab isSelected={selected === "Transactions"}>
           <TransactionsTable
-            expense={expense}
+            expenses={expenses}
             setExpense={setExpense}
             balance={balance}
             setBalance={setBalance}

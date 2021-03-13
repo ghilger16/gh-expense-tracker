@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ExpenseForm = ({ expense, setExpense, balance, setBalance }) => {
+const ExpenseForm = ({ expenses, setExpense, balance, setBalance }) => {
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -13,27 +13,31 @@ const ExpenseForm = ({ expense, setExpense, balance, setBalance }) => {
       alert("Please Complete Form");
     } else {
       let newExpense = {
-        id: expense.length,
+        id: Math.random(),
         date,
         amount,
         description,
         purchasedFrom,
       };
-      let arr = expense.concat(newExpense);
-      setExpense(arr);
+      const expenseArray = [...expenses, newExpense];
+      setExpense(expenseArray);
 
       setBalance(balance + amount);
+      setDate("");
+      setAmount("");
+      setDescription("");
+      setPurchasedFrom("");
     }
   };
 
   return (
-    <div class="card-body w-50 mx-auto">
+    <div class="card-body w-100 mx-auto">
       <form>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Date</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
               value={date}
               onChange={(e) => setDate(e.target.value)}

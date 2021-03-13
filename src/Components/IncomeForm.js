@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const IncomeForm = ({ expense, setExpense, balance, setBalance }) => {
+const IncomeForm = ({ expenses, setExpense, balance, setBalance }) => {
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
-  const [description, setDescription] = useState("");
+
   const [incomeSource, setIncomeSource] = useState("");
   const [isIncome, setIsIncome] = useState(true);
 
@@ -14,28 +14,29 @@ const IncomeForm = ({ expense, setExpense, balance, setBalance }) => {
       alert("Please Complete Form");
     } else {
       let newExpense = {
-        id: expense.length,
+        id: Math.random(),
         date,
         amount,
-        description,
         incomeSource,
         isIncome,
       };
-      let arr = expense.concat(newExpense);
-      setExpense(arr);
+      const expenseArray = [...expenses, newExpense];
+      setExpense(expenseArray);
 
       setBalance(balance + amount);
+      setDate("");
+      setAmount("");
     }
   };
 
   return (
-    <div class="card-body w-50 mx-auto">
+    <div class="card-body w-100 mx-auto">
       <form>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Date</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -51,15 +52,7 @@ const IncomeForm = ({ expense, setExpense, balance, setBalance }) => {
             />
           </div>
         </div>
-        <div class="form-group">
-          <label>Description</label>
-          <input
-            type="text"
-            class="form-control"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+
         <div class="form-group">
           <label>Income Source</label>
           <input
