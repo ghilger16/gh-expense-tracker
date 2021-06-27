@@ -1,6 +1,6 @@
 ## Expense Tracker
 
-A budget tool written in Javascript, HTML and CSS - uses React with Bootrap 
+A budget tool written in Javascript, HTML and CSS - uses React with Bootstrap 
 
 Try it [here](https://gh-expense-tracker.herokuapp.com)
 
