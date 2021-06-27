@@ -16,4 +16,4 @@ lifecycle methods.
 
 #### Author
 
-Greg Hilger - Full-Stack Software Developer 
+Greg Hilger - Full Stack Software Developer  [Website](https://www.gregoryhilger.com) | [LinkedIn](https://www.linkedin.com/in/gregoryhilger/)
